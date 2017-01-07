@@ -1,0 +1,51 @@
+<!-- This is a comment -->
+<workflow-app xmlns = "uri:oozie:workflow:0.4" name = "simple-Workflow">
+   <start to = "Create_External_Table" />
+
+   <!—Step 1 -->
+   
+   <action name = "Create_External_Table">
+      <hive xmlns = "uri:oozie:hive-action:0.4">
+         <job-tracker> http://127.0.0.1:8050</job-tracker>
+         <name-node>hdfs://127.0.0.1:8020</name-node>
+         <script>/user/admin/scripts/external.hive</script>
+      </hive>
+		
+      <ok to = "Create_parquet_Table" />
+      <error to = "kill_job" />
+   </action>
+
+   <!—Step 2 -->
+   
+   <action name = "Create_parquet_Table">
+      <hive xmlns = "uri:oozie:hive-action:0.4">
+         <job-tracker> http://127.0.0.1:8050</job-tracker>
+         <name-node>hdfs://127.0.0.1:8020</name-node>
+         <script> /user/admin/scripts/parquet.hive</script>
+      </hive>
+		
+      <ok to = "Insert_into_Table" />
+      <error to = "kill_job" />
+   </action>
+
+   <!—Step 3 -->
+      
+   <action name = "Insert_into_Table">
+      <hive xmlns = "uri:oozie:hive-action:0.4">
+         <job-tracker> http://127.0.0.1:8050</job-tracker>
+         <name-node>hdfs://127.0.0.1:8020</name-node>
+         <script> /user/admin/scripts/copy_data.hql</script>
+         <param>default</param>
+      </hive>
+		
+      <ok to = "end" />
+      <error to = "kill_job" />
+   </action>
+   
+   <kill name = "kill_job">
+      <message>Job failed</message>
+   </kill>
+	
+   <end name = "end" />
+
+</workflow-app>

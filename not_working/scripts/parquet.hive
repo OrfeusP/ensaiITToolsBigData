@@ -1,0 +1,12 @@
+create table gas_stations(
+   id INT,
+   zipcode INT,
+   pop STRING,
+   latitude BIGINT,
+   longtitude BIGINT,
+   date STRING,
+   gas_id INT,
+   gas_name INT,
+   price BIGINT
+)
+STORED AS PARQUETFILE;
