@@ -15,8 +15,11 @@ or use Hive View's UI provided by Ambari.
 # Visualizations Proposed 
 
 * The first visualization presents the average price of the different types of gas thought the examined period, providing an general overview of the data.
+![alt tag](https://github.com/OrfeusP/ensaiITToolsBigData/blob/master/viz-1.png)
 * The second visualization shows the evolution of the price per gas type for a period of one month.
+![alt tag](https://github.com/OrfeusP/ensaiITToolsBigData/blob/master/viz-2.png)
 * The third one shows the average price of each gas type depending on the population that lives near the gas stations.
+![alt tag](https://github.com/OrfeusP/ensaiITToolsBigData/blob/master/viz-3.png)
 
 # Problems Encountared
 I trying to implement the bonuses but I came accross multiple problems.
